@@ -8,7 +8,7 @@ index_html = '<a href="https://github.com/login/oauth/authorize?client_id=Iv23li
 client_id = 'Iv23lifkFb0BVBeDCugm'
 client_sec = os.environ['CLIENT_SEC']
 
-PORT = os.environ['PORT']
+PORT = int(os.environ['PORT'])
 Handler = http.server.SimpleHTTPRequestHandler
 
 known_users = {}
@@ -64,5 +64,5 @@ class myHandler(http.server.BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(bytes(index_html, 'UTF-8'))
 
-with socketserver.TCPServer(('localhost', PORT), myHandler) as ser:
+with socketserver.TCPServer(('', PORT), myHandler) as ser:
     ser.serve_forever()
